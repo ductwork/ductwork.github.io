@@ -167,4 +167,4 @@ end
 
 ---
 
-Now we're finally ready to trigger the pipelines to run!
+Next, we're ready to run the `ductwork` processes.
