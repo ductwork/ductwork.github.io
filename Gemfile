@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "minima", "~> 2.5"
+gem "just-the-docs"
 
 group :jekyll_plugins do
   gem "github-pages"
