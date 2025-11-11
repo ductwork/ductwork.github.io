@@ -60,7 +60,7 @@ default: &default
 
 ## `job_worker.shutdown_timeout`
 
-Once the job worker graceful shutdown sequence has started, all job worker threads attempt to join with the parent process. Ideally, job execution is short enough that it finishes before the timeout. Otherwise, the thread will be killed. This value should be less than the supervisor shutdown timeout to properly cascade timeouts.
+Once the job worker graceful shutdown sequence has started, all job worker threads attempt to join with the parent process. Ideally, job execution is short enough that it finishes before the timeout. Otherwise, the thread will be killed. This value should be less than the supervisor shutdown timeout to properly cascade timeouts. The default value is **20** (seconds).
 
 ```yaml
 default: &default
@@ -79,7 +79,7 @@ Ductwork.configuration.logger = Logger.new("ductwork.log")
 
 ## `pipeline.polling_timeout`
 
-This configuration value is similar to the other polling timeout configurations. The pipeline advancer process will query for pipelines whose last step is completed and needs advanced. If no pipelines are returned or all have been advanced then the process will sleep for the configured amount of seconds.
+This configuration value is similar to the other polling timeout configurations. The pipeline advancer process will query for pipelines whose last step is completed and needs advanced. If no pipelines are returned or all have been advanced then the process will sleep for the configured amount of seconds. The default value is **1** (second).
 
 ```yaml
 default: &default
@@ -89,7 +89,7 @@ default: &default
 
 ## `pipelines`
 
-This configuration value sets the pipelines to run for the `ductwork` process. Running a pipeline means running a "pipeline advancer" process and a "job worker" process that creates threads. For more information on the concurrency models of `ductwork` see the [Concurrency page]({% link advanced/concurrency.md %}). The value for this configuration can be a list of pipeline class names or a wildcard.
+This configuration value sets the pipelines to run for the `ductwork` process. Running a pipeline means running a "pipeline advancer" process and a "job worker" process that creates threads. For more information on the concurrency models of `ductwork` see the [Concurrency page]({% link advanced/concurrency.md %}). The value for this configuration can be a list of pipeline class names or a wildcard. There is no default value for this configuration; it must be specified.
 
 ```yaml
 default: &default
@@ -109,7 +109,7 @@ default: &default
 
 ## `supervisor.polling_timeout`
 
-This configuration value follows the same pattern as the other polling timeout configuration values. The supervisor checks the heartbeat of its children processes then sleeps for the configured polling timeout in seconds.
+This configuration value follows the same pattern as the other polling timeout configuration values. The supervisor checks the heartbeat of its children processes then sleeps for the configured polling timeout in seconds. The default value is **1** (second).
 
 ```yaml
 default: &default
@@ -119,7 +119,7 @@ default: &default
 
 ## `supervisor.shutdown_timeout`
 
-This configuration value is similar to the other shutdown timeout configuration. Since this is the supervisor, this configuration value should be larger than all the other shutdown timeout configurations to ensure proper cascading. If the timeout is surpassed, the child processes: pipeline advancer and job worker are sent a `SIGKILL` signal and terminated immediately.
+This configuration value is similar to the other shutdown timeout configuration. Since this is the supervisor, this configuration value should be larger than all the other shutdown timeout configurations to ensure proper cascading. If the timeout is surpassed, the child processes: pipeline advancer and job worker are sent a `SIGKILL` signal and terminated immediately. The default value is **30** (seconds).
 
 ```yaml
 default: &default
