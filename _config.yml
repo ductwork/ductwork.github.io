@@ -5,10 +5,12 @@ baseurl: ""
 url: "https://docs.getductwork.io"
 github_username: zoso10
 
+remote_theme: just-the-docs/just-the-docs
 theme: just-the-docs
 color_scheme: dark
 plugins:
   - jekyll-feed
+  - jekyll-remote-theme
 
 logo: "/assets/images/logo.png"
 

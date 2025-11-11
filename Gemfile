@@ -5,6 +5,7 @@ gem "just-the-docs"
 group :jekyll_plugins do
   gem "github-pages"
   gem "jekyll-feed", "~> 0.12"
+  gem "jekyll-remote-theme"
 end
 
 platforms :windows, :jruby do
