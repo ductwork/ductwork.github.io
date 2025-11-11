@@ -36,7 +36,7 @@ After that, the only thing left to do is run migrations via:
 
 ### Multi-Database Support
 
-If you are connecting to multiple databases in your rails application you can configure which database to use with the `database` configuration. For more information see the [Configuration section]({% link advanced/configuration.md %}). Then, you'll need to copy over the migrations that were generated to the `migration_paths` configuration for that database before migrating.
+If you are connecting to multiple databases in your rails application you can configure which database to use with the `database` configuration. For more information see the [Configuration page]({% link advanced/configuration.md %}). Then, you'll need to copy over the migrations that were generated to the `migration_paths` configuration for that database before migrating.
 
 ---
 
