@@ -10,9 +10,12 @@ color_scheme: dark
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
+  - jekyll-toc
 
 logo: "/assets/images/logo.png"
 
 aux_links:
   "GitHub":
     - "//github.com/ductwork/ductwork"
+
+footer_content: "Copyright &copy; 2025 Tyler Ewing"

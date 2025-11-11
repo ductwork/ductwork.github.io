@@ -6,6 +6,7 @@ group :jekyll_plugins do
   gem "github-pages"
   gem "jekyll-feed", "~> 0.12"
   gem "jekyll-remote-theme"
+  gem "jekyll-toc"
 end
 
 platforms :windows, :jruby do

@@ -4,8 +4,10 @@ parent: Basics
 nav_order: 10
 ---
 
-# Installation
+# Getting Started
 
-# Rails Generator
+## Installation
 
-# Running Migrations
+## Rails Generator
+
+## Running Migrations
