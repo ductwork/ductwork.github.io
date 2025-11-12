@@ -6,15 +6,15 @@ nav_order: 10
 
 # Configuration
 
-Ductwork is configured through a configuration file. The default lives at `config/ductwork.yml` There is a CLI option (`-c` or `--config`) for specifying the configuration file's relative path. This allows you to have multiple instances of `ductwork` run different pipelines and be scaled differently.
+Ductwork is configured through a YAML configuration file. The default configuration file is located at `config/ductwork.yml`. You can specify a different configuration file using the CLI option `-c` or `--config` with a relative path. This allows you to run multiple instances of Ductwork with different pipelines and scaling configurations.
 
-Below are all the configuration values, descriptions, and their defaults that are available to be tuned:
+Below are all available configuration values with their descriptions and defaults.
 
 ## `database`
 
-This configuration value determines the database to connect to in multi-database rails applications. This value is converted to a symbol and passed to ActiveRecord's `connect_to` method in the `Ductwork::Record` abstract parent class. If no value is configured then the `connect_to` method is not called. The default value for this configuration is `nil`.
+Specifies which database to connect to in multi-database Rails applications. This value is converted to a symbol and passed to ActiveRecord's `connect_to` method in the `Ductwork::Record` abstract parent class. If left unset, the `connect_to` method is not called and the default database is used.
 
-If you do use this configuration, then you'll need to manually move the generated migration files to the `migration_paths` directory for that database and run migrations.
+**Default:** `nil`
 
 ```yaml
 default: &default
@@ -24,11 +24,13 @@ production:
   <<: *default
 ```
 
-The default value is `nil`. As such, the method to connect to another database is not called if nothing is configured.
+**Note:** If you use this configuration, you'll need to manually move the generated migration files to the `migration_paths` directory for that database and run migrations.
 
 ## `job_worker.count`
 
-This configuration value sets the number of threads that are created for each running pipeline's job worker process. These threads are responsible for running the actual job for each step. The default is **5**.
+Sets the number of threads created for each running pipeline's job worker process. These threads execute the actual job for each step.
+
+**Default:** 5
 
 ```yaml
 default: &default
@@ -36,11 +38,13 @@ default: &default
     worker_count: 10
 ```
 
-**NOTE**: Be sure to properly scale the rails connection pool size so the number of threads and connections are equal.
+**Important:** Scale your Rails connection pool size to match the number of threads to ensure adequate database connections.
 
 ## `job_worker.max_retry`
 
-This configuration value sets the number of times a step's job can be retried before marking it as an error and halting the pipeline. The default is **3**.
+Sets the maximum number of times a step's job can be retried before marking it as an error and halting the pipeline.
+
+**Default:** 3
 
 ```yaml
 default: &default
@@ -50,7 +54,9 @@ default: &default
 
 ## `job_worker.polling_timeout`
 
-Once a job worker boots, it enters the main work loop. In the loop, the job worker will attempt to fetch an available job and execute it. If no job exists, the thread will sleep for a configured amount of time as to not crush the database with queries. The default is **1** with a unit of "seconds".
+Configures how long (in seconds) a job worker thread sleeps when no jobs are available. This prevents excessive database queries while waiting for work.
+
+**Default:** 1 (second)
 
 ```yaml
 default: &default
@@ -60,7 +66,9 @@ default: &default
 
 ## `job_worker.shutdown_timeout`
 
-Once the job worker graceful shutdown sequence has started, all job worker threads attempt to join with the parent process. Ideally, job execution is short enough that it finishes before the timeout. Otherwise, the thread will be killed. This value should be less than the supervisor shutdown timeout to properly cascade timeouts. The default value is **20** (seconds).
+Sets the maximum time (in seconds) to wait for job worker threads to complete during graceful shutdown. Threads that don't finish within this timeout are killed. This value should be less than the supervisor shutdown timeout to ensure proper cascading.
+
+**Default:** 20 (seconds)
 
 ```yaml
 default: &default
@@ -70,7 +78,9 @@ default: &default
 
 ## `logger`
 
-The `logger` configuration value is the only value that is not defined in the configuration file as it requires a logger object instance. It is recommended to configure this via an initializer or somewhere during rails boot. There is an included initializer that sets the logger to the `Rails.logger` if one is not set. While it logically flows to share the same logger for everything, it is recommended to use a separate logger for the running `ductwork` process. The default logger prints to `STDOUT`.
+Configures the logger instance used by Ductwork. This is the only configuration value not defined in the YAML file, as it requires a logger object. Configure this in an initializer or during Rails boot. An included initializer sets the logger to `Rails.logger` if none is specified. While sharing the Rails logger is convenient, using a separate logger for the Ductwork process is recommended.
+
+**Default:** Logger writing to `STDOUT`
 
 ```ruby
 # config/initializers/ductwork.rb
@@ -79,7 +89,9 @@ Ductwork.configuration.logger = Logger.new("ductwork.log")
 
 ## `pipeline.polling_timeout`
 
-This configuration value is similar to the other polling timeout configurations. The pipeline advancer process will query for pipelines whose last step is completed and needs advanced. If no pipelines are returned or all have been advanced then the process will sleep for the configured amount of seconds. The default value is **1** (second).
+Configures how long (in seconds) the pipeline advancer process sleeps when no pipelines need advancing. The process queries for pipelines whose last step is completed and advances them if found.
+
+**Default:** 1 (second)
 
 ```yaml
 default: &default
@@ -89,7 +101,9 @@ default: &default
 
 ## `pipelines`
 
-This configuration value sets the pipelines to run for the `ductwork` process. Running a pipeline means running a "pipeline advancer" process and a "job worker" process that creates threads. For more information on the concurrency models of `ductwork` see the [Concurrency page]({% link advanced/concurrency.md %}). The value for this configuration can be a list of pipeline class names or a wildcard. There is no default value for this configuration; it must be specified.
+Specifies which pipelines to run for the Ductwork process. Running a pipeline means starting both a pipeline advancer process and a job worker process with multiple threads. For more information on Ductwork's concurrency model, see the [Concurrency page]({% link advanced/concurrency.md %}).
+
+This configuration accepts either a list of pipeline class names or a wildcard. **This configuration is required and has no default value.**
 
 ```yaml
 default: &default
@@ -105,11 +119,13 @@ default: &default
   pipelines: "*"
 ```
 
-**NOTE**: Use with caution as this can eat up A LOT of resources if you have many defined pipelines!
+**Warning:** Use the wildcard with caution, as it can consume significant resources if you have many defined pipelines.
 
 ## `supervisor.polling_timeout`
 
-This configuration value follows the same pattern as the other polling timeout configuration values. The supervisor checks the heartbeat of its children processes then sleeps for the configured polling timeout in seconds. The default value is **1** (second).
+Configures how long (in seconds) the supervisor process sleeps between heartbeat checks of its child processes (pipeline advancer and job worker).
+
+**Default:** 1 (second)
 
 ```yaml
 default: &default
@@ -119,7 +135,9 @@ default: &default
 
 ## `supervisor.shutdown_timeout`
 
-This configuration value is similar to the other shutdown timeout configuration. Since this is the supervisor, this configuration value should be larger than all the other shutdown timeout configurations to ensure proper cascading. If the timeout is surpassed, the child processes: pipeline advancer and job worker are sent a `SIGKILL` signal and terminated immediately. The default value is **30** (seconds).
+Sets the maximum time (in seconds) to wait for child processes to shut down gracefully. This value should be larger than all other shutdown timeout configurations to ensure proper cascading. If the timeout is exceeded, child processes (pipeline advancer and job worker) receive a `SIGKILL` signal and terminate immediately.
+
+**Default:** 30 (seconds)
 
 ```yaml
 default: &default
