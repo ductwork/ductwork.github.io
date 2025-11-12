@@ -20,6 +20,6 @@ All that's left now is to call the pipeline in your code! Triggering a pipeline 
 
 ```ruby
 rake :enrich_user_data do
-  EnrichUserDataPipeline.trigger(7)
+  EnrichAllUsersDataPipeline.trigger(7)
 end
 ```

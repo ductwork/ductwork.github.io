@@ -67,7 +67,7 @@ The `expand` transition is basically a "foreach". The return value of the Step `
 The `expand` Transition has a single keyword argument `to` that takes a single Step class. In our example below:
 
 ```ruby
-class EnrichUserDataPipeline < Ductwork::Pipeline
+class EnrichAllUsersDataPipeline < Ductwork::Pipeline
   define do |pipeline|
     pipeline.start(QueryUsersRequiringEnrichment)
             .expand(to: LoadUserData)
@@ -80,7 +80,7 @@ end
 The `divide` transition passes a copy of the return value to each Step class in the Transition argument. This argument is a keyword argument, similar to `expand`, with a single `to` keyword but takes an array of Step classes instead of a scalar. All of these steps may also run concurrently.
 
 ```ruby
-class EnrichUserDataPipeline < Ductwork::Pipeline
+class EnrichAllUsersDataPipeline < Ductwork::Pipeline
   define do |pipeline|
     pipeline.start(QueryUsersRequiringEnrichment)
             .expand(to: LoadUserData)
@@ -92,7 +92,7 @@ end
 The `divide` Transition is interesting in that it can also take a block. When taking a block `divide` will yield a Branch for each Step in the arguments. This allows you to further chain Transitions onto each Branch separately.
 
 ```ruby
-class EnrichUserDataPipeline < Ductwork::Pipeline
+class EnrichAllUsersDataPipeline < Ductwork::Pipeline
   define do |pipeline|
     pipeline.start(StepA)
             .divide(to: [StepB, StepC, StepD]) do |branch1, branch2, branch3|
@@ -110,7 +110,7 @@ end
 The `combine` Transition is the inverse of the `divide` Transition. It takes multiple Branches and merges them into a single Step. The return values from each previous Step is combined together in an array and passed to the next Step. The "combined" Step waits for all previous Steps to finish before starting. Combine will raise a `Ductwork::DSL::DefinitionBuilder::CombineError` if you call `combine` on a pipeline that hasn't been divided.
 
 ```ruby
-class EnrichUserDataPipeline < Ductwork::Pipeline
+class EnrichAllUsersDataPipeline < Ductwork::Pipeline
   define do |pipeline|
     pipeline.start(QueryUsersRequiringEnrichment)
             .expand(to: LoadUserData)
@@ -123,7 +123,7 @@ end
 The block syntax of the `combine` Transition can be a bit easier to read. You call `combine` on any of the branches and pass any as the first argument.
 
 ```ruby
-class EnrichUserDataPipeline < Ductwork::Pipeline
+class EnrichAllUsersDataPipeline < Ductwork::Pipeline
   define do |pipeline|
     pipeline.start(A).divide(to: [B, C, D]) do |branch1, branch2, branch3|
       branch1.combine(branch2, branch3, into: StepE)
@@ -137,7 +137,7 @@ end
 The most basic Transition is `chain`. This simply connects two Steps together, executing the latter one if and only if the previous Step succeeds. There is no concurrency with chaining.
 
 ```ruby
-class EnrichUserDataPipeline < Ductwork::Pipeline
+class EnrichAllUsersDataPipeline < Ductwork::Pipeline
   define do |pipeline|
     pipeline.start(QueryUsersRequiringEnrichment)
             .expand(to: LoadUserData)
@@ -153,7 +153,7 @@ end
 The `collapse` Transition is the inverse of the `expand` Transition. It takes an expanded Branch and collapses all the Steps into a new Step. Similar to `combine` it merges together all the arguments into an array and passes that to the next Step. Collapse will raise a `Ductwork::DSL::DefinitionBuilder::CollapseError` if the pipeline is not expanded.
 
 ```ruby
-class EnrichUserDataPipeline < Ductwork::Pipeline
+class EnrichAllUsersDataPipeline < Ductwork::Pipeline
   define do |pipeline|
     pipeline.start(QueryUsersRequiringEnrichment)
             .expand(to: LoadUserData)
