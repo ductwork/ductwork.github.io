@@ -25,6 +25,16 @@ To help you get started there is a rails generator that creates necessary files 
 
 ```bash
 ❯ bin/rails generate ductwork:install
+      create  config/ductwork.yml
+      create  bin/ductwork
+      create  db/migrate/20251112180126_create_ductwork_pipelines.rb
+      create  db/migrate/20251112180127_create_ductwork_steps.rb
+      create  db/migrate/20251112180128_create_ductwork_jobs.rb
+      create  db/migrate/20251112180129_create_ductwork_executions.rb
+      create  db/migrate/20251112180130_create_ductwork_availabilities.rb
+      create  db/migrate/20251112180131_create_ductwork_runs.rb
+      create  db/migrate/20251112180132_create_ductwork_results.rb
+      create  db/migrate/20251112180133_create_ductwork_processes.rb
 ```
 
 ## Running Migrations
@@ -32,6 +42,10 @@ After that, the only thing left to do is run migrations via:
 
 ```bash
 ❯ bin/rails db:migrate
+== 20251112180126 CreateDuctworkPipelines: migrating ==========================
+-- create_table(:ductwork_pipelines)
+   -> 0.0090s
+...
 ```
 
 ### Multi-Database Support
