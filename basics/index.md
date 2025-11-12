@@ -3,4 +3,4 @@ title: Basics
 nav_order: 20
 ---
 
-hi
+This section will go over the essentials to get you up and running with `ductwork`.

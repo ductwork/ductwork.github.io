@@ -10,7 +10,6 @@ color_scheme: dark
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
-  - jekyll-toc
 
 logo: "/assets/images/logo.png"
 
