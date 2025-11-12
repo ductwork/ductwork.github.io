@@ -21,9 +21,9 @@ end
 
 Your halt handler class must implement the following interface:
 
-* **`initialize(error)`** - The initializer receives a single argument: the error instance from the final failed step.
+* `initialize(error)` - The initializer receives a single argument: the error instance from the final failed step.
 
-* **`execute`** - An instance method that performs the halt handling logic (similar to pipeline steps).
+* `execute` - An instance method that performs the halt handling logic (similar to pipeline steps).
 
 ## Organization
 
