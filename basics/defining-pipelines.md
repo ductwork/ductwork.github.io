@@ -21,6 +21,13 @@ class EnrichAllUsersDataPipeline < Ductwork::Pipeline
 end
 ```
 
+A default scope is also created for each class that inherits from `Ductwork::Pipeline`. This allows you to query using your pipeline class and only get pipelines matching that class.
+
+```ruby
+:001> EnrichAllUsersDataPipeline.in_progress.to_sql
+#=> "SELECT \"ductwork_pipelines\".* FROM \"ductwork_pipelines\" WHERE \"ductwork_pipelines\".\"klass\" = 'EnrichAllUsersDataPipeline' AND \"ductwork_pipelines\".\"status\" = 'in_progress'"
+```
+
 ## Steps
 
 Steps are simply ruby POROs (Plain Old Ruby Object) with a specific interface. They must live under `app/steps`, similar to Pipelines. The interface requires an `#execute` instance method that doesn't take any arguments. The arity of the initializer depends on the arguments passed when triggered or the previous Step's return value. Because of the simple interface, Steps are easily testable without needing external dependencies (unless your logic requires it). Similar to Pipelines, Step class names do not need a "Step" suffix, but again, it may provide naming benefits. Assuming one of the Pipelines above exists, continue with an example:
