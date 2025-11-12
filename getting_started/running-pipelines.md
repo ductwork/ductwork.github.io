@@ -8,7 +8,9 @@ nav_order: 30
 
 ## Starting the Ductwork Process
 
-If you recall, after running the Rails generator you'll have a new binstub at `bin/ductwork`. This executable launches the supervisor process, which orchestrates your entire pipeline infrastructure—forking a pipeline advancer and job worker for each configured pipeline, with the job worker creating multiple threads to handle concurrent work. The supervisor continuously monitors child processes via heartbeat checks. When a child process misses heartbeats for 5 minutes—indicating a crash or hang—the supervisor immediately spawns a replacement process to ensure minimal pipeline execution interruption.
+If you recall, after running the Rails generator you'll have a new binstub at `bin/ductwork`. This executable launches the supervisor process, which orchestrates your entire pipeline infrastructure—forking a pipeline advancer and job worker for each configured pipeline, with the job worker creating multiple threads to handle concurrent work.
+
+The supervisor continuously monitors child processes via heartbeat checks. When a child process misses heartbeats for 5 minutes—indicating a crash or hang—the supervisor immediately spawns a replacement process to ensure minimal pipeline execution interruption.
 
 ### Basic Usage
 
