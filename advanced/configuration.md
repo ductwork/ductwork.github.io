@@ -135,7 +135,7 @@ default: &default
 
 ## `supervisor.shutdown_timeout`
 
-Sets the maximum time (in seconds) to wait for child processes to shut down gracefully. This value should be larger than all other shutdown timeout configurations to ensure proper cascading. If the timeout is exceeded, child processes (pipeline advancer and job worker) receive a `SIGKILL` signal and terminate immediately.
+Sets the maximum time (in seconds) to wait for child processes to shut down gracefully. This value should be larger than all other shutdown timeout configurations to ensure proper cascading. If the timeout is exceeded, child processes (pipeline advancer and job worker) receive a `SIGKILL` signal and terminate immediately. Be sure to set this value less than the max timeout your cloud provider may have. For example, Heroku waits 30 seconds before sending SIGKILL to processes on the dynos.
 
 **Default:** 30 (seconds)
 
