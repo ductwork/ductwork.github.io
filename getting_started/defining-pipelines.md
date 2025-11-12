@@ -1,6 +1,6 @@
 ---
 title: Defining Pipelines
-parent: Basics
+parent: Getting Started
 nav_order: 20
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Testing
-parent: Basics
+parent: Getting Started
 nav_order: 40
 ---
 

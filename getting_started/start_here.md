@@ -1,6 +1,6 @@
 ---
-title: Getting Started
-parent: Basics
+title: Start Here
+parent: Getting Started
 nav_order: 10
 ---
 
@@ -40,4 +40,4 @@ If you are connecting to multiple databases in your rails application you can co
 
 ---
 
-Once that is completed you are ready to [define pipelines]({% link basics/defining-pipelines.md %}) and [run the `ductwork` process]({% link basics/running-pipelines.md %}).
+Once that is completed you are ready to [define pipelines]({% link getting_started/defining-pipelines.md %}) and [run the `ductwork` process]({% link getting_started/running-pipelines.md %}).

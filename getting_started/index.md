@@ -1,5 +1,5 @@
 ---
-title: Basics
+title: Getting Started
 nav_order: 20
 ---
 

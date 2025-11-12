@@ -1,6 +1,6 @@
 ---
 title: Running Pipelines
-parent: Basics
+parent: Getting Started
 nav_order: 30
 ---
 
