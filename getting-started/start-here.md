@@ -54,4 +54,4 @@ If you are connecting to multiple databases in your rails application you can co
 
 ---
 
-Once that is completed you are ready to [define pipelines]({% link getting_started/defining-pipelines.md %}) and [run the `ductwork` process]({% link getting_started/running-pipelines.md %}).
+Once that is completed you are ready to [define pipelines]({% link getting-started/defining-pipelines.md %}) and [run the `ductwork` process]({% link getting-started/running-pipelines.md %}).

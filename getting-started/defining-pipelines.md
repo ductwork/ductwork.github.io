@@ -80,7 +80,7 @@ The Ductwork DSL uses a fluent interface pattern, enabling clean method chaining
 
 ### `start` - Define the First Step
 
-The `start` transition defines your pipeline's entry point. This step receives the arguments passed to the `.trigger` method (see [Running Pipelines]({% link getting_started/running-pipelines.md %})).
+The `start` transition defines your pipeline's entry point. This step receives the arguments passed to the `.trigger` method (see [Running Pipelines]({% link getting-started/running-pipelines.md %})).
 
 ```ruby
 class EnrichAllUsersDataPipeline < Ductwork::Pipeline
