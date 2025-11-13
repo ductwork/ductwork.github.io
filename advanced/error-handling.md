@@ -10,7 +10,7 @@ When a step exceeds the maximum number of retries, the pipeline halts. You can s
 
 Pass your halt handler class to the `on_halt` method in your pipeline definition:
 ```ruby
-class EnrichUserData < Ductwork::Pipeline
+class EnrichAllUsersDataPipeline < Ductwork::Pipeline
   define do |pipeline|
     pipeline.on_halt(PageOnCallEngineer)
   end
