@@ -87,7 +87,7 @@ Configures the logger instance used by Ductwork. This is the only configuration 
 Ductwork.configuration.logger = Logger.new("ductwork.log")
 ```
 
-## `pipeline.polling_timeout`
+## `pipeline_advancer.polling_timeout`
 
 Configures how long (in seconds) the pipeline advancer process sleeps when no pipelines need advancing. The process queries for pipelines whose last step is completed and advances them if found.
 

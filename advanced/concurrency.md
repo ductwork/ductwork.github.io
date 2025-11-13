@@ -35,7 +35,7 @@ A single advancer process handles all configured pipelines by creating one threa
 - Monitors its pipeline's current stage
 - Checks when all steps in a stage reach `advancing` status
 - Transitions the pipeline to the next stage when ready
-- Sleeps for `pipeline.polling_timeout` seconds when no work is available
+- Sleeps for `pipeline_advancer.polling_timeout` seconds when no work is available
 
 ### Job Worker Processes
 
