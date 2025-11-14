@@ -8,6 +8,12 @@ nav_order: 10
 
 Ductwork is configured through a YAML configuration file. The default configuration file is located at `config/ductwork.yml`. You can specify a different configuration file using the CLI option `-c` or `--config` with a relative path. This allows you to run multiple instances of Ductwork with different pipelines and scaling configurations.
 
+You can also set configuration values directly in code, say in an initializer, but it is less recommended:
+```ruby
+# config/initializers/ductwork.rb
+Ductwork.configuration.job_worker_max_retry = 10
+```
+
 Below are all available configuration values with their descriptions and defaults.
 
 ## `database`
@@ -97,6 +103,18 @@ Configures how long (in seconds) the pipeline advancer process sleeps when no pi
 default: &default
   pipeline:
     polling_timeout: 5 # seconds
+```
+
+## `pipeline_advancer.shutdown_timeout`
+
+Sets the maximum time (in seconds) to wait for pipeline advancer threads to complete during graceful shutdown. Threads that don't finish within this timeout are killed. This value should be less than the supervisor shutdown timeout to ensure proper cascading.
+
+**Default:** 20 (seconds)
+
+```yaml
+default: &default
+  pipeline_advancer:
+    shutdown_timeout: 25 # seconds
 ```
 
 ## `pipelines`
