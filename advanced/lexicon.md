@@ -1,5 +1,7 @@
 ---
 title: Lexicon
-parent: Architecture
+parent: Advanced
 nav_order: 10
 ---
+
+# Lexicon

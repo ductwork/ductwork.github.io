@@ -1,7 +1,7 @@
 ---
 title: Configuration
-parent: Advanced
-nav_order: 10
+parent: Getting Started
+nav_order: 40
 ---
 
 # Configuration
@@ -119,7 +119,7 @@ default: &default
 
 ## `pipelines`
 
-Specifies which pipelines to run for the Ductwork process. Running a pipeline means starting both a pipeline advancer process and a job worker process with multiple threads. For more information on Ductwork's concurrency model, see the [Concurrency page]({% link advanced/concurrency.md %}).
+Specifies which pipelines to run for the Ductwork process. Running a pipeline means starting both a pipeline advancer process and a job worker process with multiple threads. For more information on Ductwork's concurrency model, see the [Concurrency page]({% link architecture/concurrency.md %}).
 
 This configuration accepts either a list of pipeline class names or a wildcard. **This configuration is required and has no default value.**
 

@@ -1,7 +1,7 @@
 ---
 title: Concurrency
-parent: Advanced
-nav_order: 50
+parent: Architecture
+nav_order: 10
 ---
 
 # Concurrency

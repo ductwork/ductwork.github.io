@@ -42,8 +42,8 @@ EnrichAllUsersDataPipeline.trigger(days_outdated: 7)
 
 - **[Getting Started]({% link getting-started/start-here.md %})** - Install Ductwork and run your first pipeline
 - **[Defining Pipelines]({% link getting-started/defining-pipelines.md %})** - Learn the DSL for connecting steps and managing workflow
-- **[Configuration]({% link advanced/configuration.md %})** - Tune workers, timeouts, and scaling for your needs
-- **[Concurrency]({% link advanced/concurrency.md %})** - Understand Ductwork's multi-process, multi-threaded architecture
+- **[Configuration]({% link getting-started/configuration.md %})** - Tune workers, timeouts, and scaling for your needs
+- **[Concurrency]({% link architecture/concurrency.md %})** - Understand Ductwork's multi-process, multi-threaded architecture
 
 ## When to Use Ductwork
 
