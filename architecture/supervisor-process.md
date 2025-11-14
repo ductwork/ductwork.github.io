@@ -1,5 +1,5 @@
 ---
 title: Supervisor Process
 parent: Architecture
-nav_order: 20
+nav_order: 30
 ---
