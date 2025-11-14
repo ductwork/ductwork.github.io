@@ -84,7 +84,9 @@ default: &default
 
 ## `logger`
 
-Configures the logger instance used by Ductwork. This is the only configuration value not defined in the YAML file, as it requires a logger object. Configure this in an initializer or during Rails boot. An included initializer sets the logger to `Rails.logger` if none is specified. While sharing the Rails logger is convenient, using a separate logger for the Ductwork process is recommended.
+Configures the logger instance used by Ductwork. This is the only configuration value not defined directly in the YAML file, however, see below logger configurations below for more options. Configure this in an initializer or during Rails boot. An included Rails engine sets the `logger` to `Rails.logger` ONLY if it hasn't been set yet.
+
+While it can be argued that an application triggering pipelines should log to its rails logger, for the ductwork process it makes sense to use its own logger. It's recommended to log to STDOUT and let your process manager handle it. Sharing the Rails logger can be convenient, but it can clutter output. It's recommended to use a separate logger.
 
 **Default:** Logger writing to `STDOUT`
 
@@ -92,6 +94,34 @@ Configures the logger instance used by Ductwork. This is the only configuration 
 # config/initializers/ductwork.rb
 Ductwork.configuration.logger = Logger.new("ductwork.log")
 ```
+
+## `logger.level`
+
+Sets the log level.
+
+**Default:** 1 (`Logger::INFO`)
+
+```yaml
+default: &default
+  logger:
+    level: 0 # Logger::DEBUG
+```
+
+**NOTE**: This will only change the logger level for the running `bin/ductwork` process. This is by design as to avoid accidentally changing the log level for an entires Rails application.
+
+## `logger.source`
+
+Instead of setting the `logger` variable directly, which isn't recommended unless necessary, you can choose between the default logger printing to STDOUT or the Rails logger.
+
+**Default:** `"default"` (`Logger` instance that prints to STDOUT)
+
+```yaml
+default: &default
+  logger:
+    source: rails # sets to `Rails.logger`, do this with caution!
+```
+
+ **NOTE**: This will only change the logger level for the running `bin/ductwork` process.
 
 ## `pipeline_advancer.polling_timeout`
 
