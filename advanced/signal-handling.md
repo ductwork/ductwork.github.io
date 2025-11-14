@@ -49,6 +49,8 @@ When the supervisor receives an `INT` or `TERM` signal, it orchestrates a cascad
 
 1. **Job Worker Shutdown** - Job workers attempt a graceful shutdown by waiting for all active threads to complete their current work and join the parent process. Each thread has up to `job_worker.shutdown_timeout` seconds (default: 20) to finish. Once the timeout expires, any remaining threads are killed immediately to prevent hanging.
 
+1. **Pipeline Advancer Shutdown** - The pipeline advancer attemps a graceful shutdown by waiting for all active threads to complete their current work and join the parent process. Each thread has up to `pipeline_advancer.shutdown_timeout` seconds (default: 20) to finish. Once the timeout expires, any remaining threads are killed immediately to prevent hanging.
+
 1. **Supervisor Shutdown** - The supervisor waits for all child processes to exit cleanly, respecting the `supervisor.shutdown_timeout` value (default: 30 seconds). If any processes are still alive after the timeout, they receive a `SIGKILL` and terminate immediately.
 
 ### Shutdown Sequence
@@ -59,6 +61,9 @@ INT/TERM received
 Supervisor forwards signal to children
     ↓
 Job workers wait for threads (up to job_worker.shutdown_timeout)
+    ├─ Threads finish gracefully ✓
+    └─ Or are killed after timeout ✗
+Pipeline advancer waits for threads (up to pipeline_advancer.shutdown_timeout)
     ├─ Threads finish gracefully ✓
     └─ Or are killed after timeout ✗
     ↓
