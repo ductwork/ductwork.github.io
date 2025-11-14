@@ -18,3 +18,5 @@ aux_links:
     - "//github.com/ductwork/ductwork"
 
 footer_content: "Copyright &copy; 2025 Tyler Ewing"
+
+exclude: [LICENSE.txt, Gemfile, Gemfile.lock, README.md]
