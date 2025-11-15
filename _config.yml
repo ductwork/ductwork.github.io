@@ -13,6 +13,9 @@ plugins:
 
 logo: "/assets/images/logo.png"
 
+mermaid:
+  version: 11.12.1
+
 aux_links:
   "GitHub":
     - "//github.com/ductwork/ductwork"
