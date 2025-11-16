@@ -4,6 +4,7 @@ description: A Ruby Pipeline Framework
 baseurl: ""
 url: "https://docs.getductwork.io"
 github_username: zoso10
+ga_tracking: G-YH4ZQTTVJH
 
 remote_theme: just-the-docs/just-the-docs
 color_scheme: dark
