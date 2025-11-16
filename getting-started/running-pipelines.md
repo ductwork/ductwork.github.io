@@ -31,7 +31,7 @@ bin/ductwork --config config/ductwork.0.yml
 
 ## Triggering Pipelines from Your Code
 
-With Ductwork running, you can trigger pipelines from anywhere in your Rails application. The `.trigger` method enqueues the pipeline and returns a `Ductwork::Pipeline` instance that you can query for status, progress, or results.
+With Ductwork running, you can trigger your pipelines from anywhere in your Rails application. The `.trigger` method enqueues the pipeline and returns a `Ductwork::Pipeline` instance that you can query for status, progress, or results. The `.trigger` method takes a single argument that will be passed to the first step.
 
 ### Example: Rake Task
 
