@@ -8,11 +8,11 @@ nav_order: 10
 
 ```mermaid
 erDiagram
-    pipelines ||--|{ steps : has
-    steps ||--|| jobs : has
-    jobs ||--o{ executions : has
-    executions ||--|| availabilities : has
-    executions ||--|| runs : has
-    executions ||--|| results : has
+    pipelines ||--|{ steps : ""
+    steps ||--|| jobs : ""
+    jobs ||--o{ executions : ""
+    executions ||--|| availabilities : ""
+    executions ||--|| runs : ""
+    executions ||--|| results : ""
     processes
 ```
