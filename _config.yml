@@ -18,9 +18,11 @@ mermaid:
   version: 11.12.1
 
 aux_links:
+  "Home":
+    - "https://www.getductwork.io"
   "GitHub":
     - "//github.com/ductwork/ductwork"
 
-footer_content: "Copyright &copy; 2025 Tyler Ewing"
+footer_content: "Copyright &copy; 2025 Tyler Ewing<br>Made in Chicago, IL ❤️"
 
 exclude: [LICENSE.txt, Gemfile, Gemfile.lock, README.md]
