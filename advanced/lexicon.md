@@ -18,6 +18,10 @@ Each pipeline defines:
 - How data flows between steps
 - How work is distributed (sequential, parallel, or fan-out patterns)
 
+## Branch
+
+A **branch** is a path in a pipeline. Pipelines can have many branches. Branches are created when the `divide` or `expand` transitions are called, and branches are reduced when the `combine` or `collapse` transitions are called.
+
 ## Step
 
 A **step** is a checkpoint within a pipeline. Steps are Plain Old Ruby Objects (POROs) that implement two methods:

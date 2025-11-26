@@ -149,7 +149,7 @@ default: &default
 
 ## `pipeline_advancer.steps.max_depth`
 
-Sets the maximum cardinality of a single step in a single stage. This configuration only applies to the `expand` transition as the number of steps it can produce is dynamic. If the maximum depth value is exceeded during pipeline advancement, a `Ductwork::Pipeline::StepDepthError` error is raised.
+Sets the maximum cardinality of steps in a single branch. This configuration only applies to the `expand` and `divide` transitions as the number of steps can increase while transitioning. If the maximum depth value is exceeded during pipeline advancement, the pipeline will be halted as it cannot continue.
 
 **Default:** -1 (unlimited)
 
