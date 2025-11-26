@@ -158,6 +158,16 @@ default: &default
     polling_timeout: 5 # seconds
 ```
 
+You can also set pipline-level polling timeout configuration. When using this syntax you can still set defaults at the library-level with the `default` key.
+
+```yaml
+default: &default
+  pipeline:
+    polling_timeout:
+      default: 0.5
+      MyPipelineA: 2
+```
+
 ## `pipeline_advancer.shutdown_timeout`
 
 Sets the maximum time (in seconds) to wait for pipeline advancer threads to complete during graceful shutdown. Threads that don't finish within this timeout are killed. This value should be less than the supervisor shutdown timeout to ensure proper cascading.
