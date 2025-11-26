@@ -83,6 +83,16 @@ default: &default
     polling_timeout: 0.5 # seconds
 ```
 
+You can also set pipline-level polling timeout configurations. Use the `default` key to set library-level default configurations.
+
+```yaml
+default: &default
+  job_worker:
+    polling_timeout:
+      default: 1
+      MyPipelineA: 0.1
+```
+
 ## `job_worker.shutdown_timeout`
 
 Sets the maximum time (in seconds) to wait for job worker threads to complete during graceful shutdown. Threads that don't finish within this timeout are killed. This value should be less than the supervisor shutdown timeout to ensure proper cascading.
