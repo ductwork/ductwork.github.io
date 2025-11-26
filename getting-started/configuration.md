@@ -58,6 +58,19 @@ default: &default
     max_retry: 3
 ```
 
+You can also set pipline and step-level max retry configuration. When using this syntax you can still set defaults at the library and pipeline-level with the `max_retry.default` and `max_retry.MyPipelineA.default` keys.
+
+```yaml
+default: &default
+  job_worker:
+    max_retry:
+      default: 4
+      MyPipelineA:
+        default: 7
+        MyStep1: 5
+      MyPipelineB: 10
+```
+
 ## `job_worker.polling_timeout`
 
 Configures how long (in seconds) a job worker thread sleeps when no jobs are available. This prevents excessive database queries while waiting for work.
