@@ -147,6 +147,33 @@ default: &default
     shutdown_timeout: 25 # seconds
 ```
 
+## `pipeline_advancer.steps.max_depth`
+
+Sets the maximum cardinality of a single step in a single stage. This configuration only applies to the `expand` transition as the number of steps it can produce is dynamic. If the maximum depth value is exceeded during pipeline advancement, a `Ductwork::Pipeline::StepDepthError` error is raised.
+
+**Default:** -1 (unlimited)
+
+```yaml
+default: &default
+  pipeline_advancer:
+    steps:
+      max_depth: 1_000_000
+```
+
+You can also set the max step depth for a specific pipeline or even a specific step in a pipeline. When using more specific syntax you can still set the library-level default with the `max_depth.default` key.
+
+```yaml
+default: &default
+  pipeline_advancer:
+    steps:
+      max_depth:
+        default: 1_000_000
+        MyPipelineA: 10_000
+        MyPipelineB:
+          default: 42
+          MyStepA: 5_000
+```
+
 ## `pipelines`
 
 Specifies which pipelines to run for the Ductwork process. Running a pipeline means starting both a pipeline advancer process and a job worker process with multiple threads. For more information on Ductwork's concurrency model, see the [Concurrency page]({% link architecture/concurrency.md %}).
