@@ -1,5 +1,5 @@
 ---
 title: Support
 parent: Pro
-nav_order: 20
+nav_order: 30
 ---
