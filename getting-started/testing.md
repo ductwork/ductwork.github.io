@@ -39,3 +39,15 @@ end.to have_triggered_pipelines(MyPipelineA, MyPipelineB, MyPipelineC)
 ```
 
 **Note:** This matcher does not support count expectations, as specifying counts for multiple pipelines would be ambiguous.
+
+## Validation
+
+It is useful to know if your pipeline and step classes are valid before pushing to production. There is a top-level `Ductwork.validate!` method that will ensure your step classes have the correct methods and arity and that each pipeline is calling transitions correctly. It is recommended to call this method in a test:
+
+```ruby
+RSpec.describe "Ductwork" do
+  specify "valid pipelines and steps" do
+    Ductwork.validate!
+  end
+end
+```
