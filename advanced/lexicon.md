@@ -24,7 +24,7 @@ A **branch** is a path in a pipeline. Pipelines can have many branches. Branches
 
 ## Step
 
-A **step** is a checkpoint within a pipeline. Steps are Plain Old Ruby Objects (POROs) that implement two methods:
+A **step** is a checkpoint within a pipeline. Steps are Ruby objects that inherit from `Ductwork::Step` and implement two methods:
 
 - `initialize` - Accepts arguments from the trigger or previous step's return value
 - `execute` - Performs the work and returns data for the next step

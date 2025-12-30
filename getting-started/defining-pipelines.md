@@ -36,7 +36,7 @@ Each pipeline class automatically gets a default scope, allowing you to query fo
 
 ## Defining Steps
 
-Steps are plain Ruby objects (POROs) with a simple interface. They must live under `app/steps` and implement an `#execute` instance method that takes no arguments.
+Steps are Ruby objects that inherit from `Ductwork::Step` with a simple interface. They must live under `app/steps` and implement an `#execute` instance method that takes no arguments.
 
 The initializer's parameters depend on either:
 - The arguments passed when the pipeline is triggered (for the first step)
@@ -48,7 +48,7 @@ This simple interface makes steps highly testable without external dependencies.
 
 ```ruby
 # app/steps/query_users_requiring_enrichment.rb
-class QueryUsersRequiringEnrichment
+class QueryUsersRequiringEnrichment < Ductwork::Step
   def initialize(days_outdated)
     @days_outdated = days_outdated
   end
