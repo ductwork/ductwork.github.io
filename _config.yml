@@ -23,6 +23,6 @@ aux_links:
   "GitHub":
     - "//github.com/ductwork/ductwork"
 
-footer_content: "Copyright &copy; 2025 Pen and Paper Solutions LLC<br>Made in Chicago, IL ❤️"
+footer_content: "Copyright &copy; 2025-2026 Pen and Paper Solutions LLC<br>Made in Chicago, IL ❤️"
 
 exclude: [LICENSE.txt, Gemfile, Gemfile.lock, README.md]
