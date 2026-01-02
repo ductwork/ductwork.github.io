@@ -4,13 +4,23 @@ parent: Pro
 nav_order: 50
 ---
 
-## `pipeline_advancer.count`
+# Pipeline Advancer
 
-The open-source version of Ductwork runs a single thread per pipeline class. Ductwork Pro lets you scale this up for high-throughput environments where pipeline advancement becomes a bottleneck—common when running large worker pools.
+The open-source version of Ductwork runs a single thread per pipeline class for advancing pipelines. Ductwork Pro lets you scale this for high-throughput environments where pipeline advancement becomes a bottleneck.
 
-> ⚠️ **Caution:** Over-provisioning threads can increase database load and degrade performance. Start conservative and scale based on observed metrics.
+Advancer bottlenecks are most common with:
 
-**Default:** 3 (threads)
+- Large worker pools that churn through jobs quickly
+- Pipelines with many fast steps (sub-second execution times)
+- Burst traffic patterns that create sudden pipeline backlogs
+
+---
+
+## Configure
+
+The `pipeline_advancer.count` configuration sets the number of threads.
+
+**Default:** 1 (threads)
 
 ### Global thread count
 
@@ -34,3 +44,5 @@ default: &default
 ```
 
 Pipelines without explicit configuration inherit the `default` value.
+
+> ⚠️ **Caution:** Over-provisioning threads can increase database load and degrade performance. Start conservative and scale based on observed metrics.
