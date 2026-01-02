@@ -8,6 +8,8 @@ nav_order: 20
 
 Ductwork Pro lets you enforce time limits on individual step executions. When a step exceeds its timeout, the pipeline halts automatically—preventing runaway processes from blocking your workers indefinitely.
 
+---
+
 ## Why use timeouts?
 
 Timeouts protect your system from:
@@ -18,6 +20,8 @@ Timeouts protect your system from:
 - **Cascading delays** — one slow step backing up your entire queue
 
 They're especially valuable in production environments where predictable execution times matter.
+
+---
 
 ## Declaring timeouts
 
@@ -34,6 +38,8 @@ Both formats work identically—use whichever reads more clearly for your use ca
 
 > ⚠️ **Validation:** Timeout values must be positive. Zero or negative values raise an `ArgumentError` at definition time.
 
+---
+
 ## What happens when a step times out
 
 When a step exceeds its timeout, Ductwork Pro triggers the following sequence:
@@ -43,6 +49,8 @@ When a step exceeds its timeout, Ductwork Pro triggers the following sequence:
 3. **Thread restart** — A fresh worker thread is spawned to replace the terminated one
 
 The halted pipeline can be inspected, retried, or cleaned up depending on your error-handling strategy.
+
+---
 
 ### Monitoring timeouts
 
