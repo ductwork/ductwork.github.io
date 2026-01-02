@@ -1,7 +1,7 @@
 ---
 title: Getting Started
 parent: Pro
-nav_order: 5
+nav_order: 10
 ---
 
 # Getting Started
