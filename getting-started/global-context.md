@@ -25,7 +25,7 @@ Global context keeps this data accessible without threading it through every ste
 
 ## Basic usage
 
-Access global context through the `context` object, which is in-scope in every step:
+Access global context through the `context` object, which is in-scope in every step. Be sure to use string keys:
 
 ```ruby
 # Write a value
