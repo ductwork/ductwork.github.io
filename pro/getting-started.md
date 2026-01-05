@@ -27,7 +27,7 @@ See [Pricing](https://www.getductwork.io/#pricing) for current rates. Payment is
 
 ## 3. Provision a token
 
-After checkout, you'll land on your dashboard where you can create authentication tokens for Bundler. Each token consists of a **key** (prefixed with `dw_`) and a **secret**.
+After checkout, you'll land on your [dashboard](https://www.getductwork.io/dashboard) where you can create authentication tokens for Bundler. Each token consists of a **key** (prefixed with `dw_`) and a **secret**.
 
 > ⚠️ **Important:** The secret is displayed only once. Copy it immediately and store it in a password manager.
 
