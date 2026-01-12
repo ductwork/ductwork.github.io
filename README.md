@@ -1,6 +1,6 @@
 # Ductwork Documentation
 
-Online documentation is at [https://docs.getductwork.io/](https://docs.getductwork.io/)
+Online documentation can be found at [https://docs.getductwork.io/](https://docs.getductwork.io/)
 
 ## Contributing
 
