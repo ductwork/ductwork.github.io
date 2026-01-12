@@ -229,6 +229,25 @@ default: &default
 
 **Warning:** Use the wildcard with caution, as it can consume significant resources if you have many defined pipelines.
 
+## `role`
+
+The value configures the runner class that is used for the main process. The default is "all" which runs everything as normal: supervisor, pipeline advancer child process, and job worker children processes. Other valid values are "advancer" and "worker". You can also set this configuation via `DUCTWORK_ROLE` environment variable.
+
+This configuration is useful in Docker or containerized environments as this will prevent forking of children processes; it will only create children threads. Thus, you can create separate containers for the pipeline advancer and job worker(s). In this configuration, however, the heartbeat reporting becomes moot as there is no supervisor to monitor the heartbeats and subsequently restart any stuck processes.
+
+**Default:** `"all"` (supervisor, pipeline advancer, and job workers)
+
+```yaml
+default: &default
+  role: advancer
+```
+
+or via environment variable:
+
+```bash
+$ DUCTWORK_ROLE=worker bin/ductwork
+```
+
 ## `supervisor.polling_timeout`
 
 Configures how long (in seconds) the supervisor process sleeps between heartbeat checks of its child processes (pipeline advancer and job worker).
