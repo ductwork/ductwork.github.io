@@ -32,6 +32,20 @@ production:
 
 **Note:** If you use this configuration, you'll need to manually move the generated migration files to the `migration_paths` directory for that database and run migrations.
 
+## `forking`
+
+This configuration value changes the underlying concurrency model. Instead of forking a pipeline advancer process and job worker processes, it flattens the hierarchy and spawns threads directly under the supervisor. Available values are `"default"` and `"none"`. Use `"none"` for a lighter footprint or if you're using JRuby or Windows.
+
+**Default:** `"default"`
+
+```yaml
+default: &default
+  forking: none
+
+production:
+  <<: *default
+```
+
 ## `job_worker.count`
 
 Sets the number of threads created for each running pipeline's job worker process. These threads execute the actual job for each step.
