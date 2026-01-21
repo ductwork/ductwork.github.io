@@ -17,6 +17,19 @@ logo: "/assets/images/logo.png"
 mermaid:
   version: 11.12.1
 
+callouts:
+  highlight:
+    color: yellow
+  important:
+    color: blue
+  new:
+    color: green
+  note:
+    color: purple
+  warning:
+    color: red
+
+
 aux_links:
   "Home":
     - "https://www.getductwork.io"
