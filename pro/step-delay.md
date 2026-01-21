@@ -6,6 +6,9 @@ nav_order: 30
 
 # Step Delay
 
+{: .highlight }
+This feature requires [Ductwork Pro](https://getductwork.io/#pricing).
+
 Ductwork Pro lets you schedule steps to execute after a specified waiting period. When a pipeline reaches a delayed step, it pauses for the configured duration before the step begins execution.
 
 Delayed steps don't block worker threads while waiting. The pipeline advancer periodically checks for steps that are ready to run, making this an efficient way to handle time-based logic.

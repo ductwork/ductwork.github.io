@@ -6,6 +6,9 @@ nav_order: 60
 
 # Metrics
 
+{: .highlight }
+This feature requires [Ductwork Pro](https://getductwork.io/#pricing).
+
 Ductwork Pro can report internal events to a StatsD-compatible metrics backend, giving you visibility into pipeline and job performance in real time.
 
 ---

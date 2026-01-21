@@ -6,6 +6,9 @@ nav_order: 20
 
 # Step Timeout
 
+{: .highlight }
+This feature requires [Ductwork Pro](https://getductwork.io/#pricing).
+
 Ductwork Pro lets you enforce time limits on individual step executions. When a step exceeds its timeout, the pipeline halts automatically—preventing runaway processes from blocking your workers indefinitely.
 
 ---

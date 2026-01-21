@@ -6,6 +6,9 @@ nav_order: 50
 
 # Pipeline Advancer
 
+{: .highlight }
+This feature requires [Ductwork Pro](https://getductwork.io/#pricing).
+
 The open-source version of Ductwork runs a single thread per pipeline class for advancing pipelines. Ductwork Pro lets you scale this for high-throughput environments where pipeline advancement becomes a bottleneck.
 
 Advancer bottlenecks are most common with:
