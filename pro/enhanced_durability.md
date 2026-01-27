@@ -24,7 +24,7 @@ When a shutdown signal is received, Ductwork supervisors enter a grace period, a
 
 ### When Jobs Don't Complete in Time
 
-**Open-source behavior**: If a job is still running when the configured grace period expires, the thread is killed. This can leave jobs in an inconsistent state—partially completed, with no record of what happened.
+**Open-source behavior**: If a job is still running when the configured grace period expires, the thread is killed. This can leave jobs in an inconsistent state, partially completed, with no record of what happened.
 
 **Ductwork Pro behavior**: When the grace period expires, Pro handles the situation gracefully:
 
