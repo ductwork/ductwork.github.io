@@ -25,13 +25,13 @@ Ductwork is a pipeline framework designed for developers who want to get things 
 ```ruby
 class EnrichAllUsersDataPipeline < Ductwork::Pipeline
   define do |pipeline|
-    pipeline.start(QueryUsersRequiringEnrichment)                     # Begin with a single step
-            .expand(to: LoadUserData)                                 # Fan out to process each user
-            .divide(to: [FetchDataFromSourceA,                        # Split into parallel branches
+    pipeline.start(QueryUsersRequiringEnrichment)           # Begin with a single step
+            .expand(to: LoadUserData)                       # Fan out to process each user
+            .divide(to: [FetchDataFromSourceA,              # Split into parallel branches
                          FetchDataFromSourceB])
-            .combine(into: CollateUserData)                           # Bring branches back together
-            .chain(to: UpdateUserData)                                # Sequential processing
-            .collapse(into: ReportUserEnrichmentSuccess)              # Final aggregation
+            .combine(into: CollateUserData)                 # Bring branches back together
+            .chain(to: UpdateUserData)                      # Sequential processing
+            .collapse(into: ReportUserEnrichmentSuccess)    # Final aggregation
   end
 end
 
