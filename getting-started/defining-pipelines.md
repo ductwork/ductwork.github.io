@@ -132,9 +132,9 @@ class EnrichAllUsersDataPipeline < Ductwork::Pipeline
   define do |pipeline|
     pipeline.start(StepA)
             .divide(to: [StepB, StepC, StepD]) do |branch1, branch2, branch3|
-              branch1.chain(StepD)
+              branch1.chain(to: StepD)
               branch2.expand(to: StepE)
-              branch3.chain(StepF).chain(StepG)
+              branch3.chain(to: StepF).chain(to: StepG)
             end
   end
 end
@@ -175,7 +175,7 @@ end
 
 The `chain` transition is the simplest transition. It connects two steps sequentially—the second step only runs if the first succeeds. There's no concurrency with chaining.
 
-**Syntax:** `chain(StepClass)`
+**Syntax:** `chain(to: StepClass)`
 
 ```ruby
 class EnrichAllUsersDataPipeline < Ductwork::Pipeline
@@ -184,7 +184,7 @@ class EnrichAllUsersDataPipeline < Ductwork::Pipeline
             .expand(to: LoadUserData)
             .divide(to: [FetchDataFromSourceA, FetchDataFromSourceB])
             .combine(into: CollateUserData)
-            .chain(UpdateUserData)
+            .chain(to: UpdateUserData)
   end
 end
 ```
@@ -202,7 +202,7 @@ class EnrichAllUsersDataPipeline < Ductwork::Pipeline
             .expand(to: LoadUserData)
             .divide(to: [FetchDataFromSourceA, FetchDataFromSourceB])
             .combine(into: CollateUserData)
-            .chain(UpdateUserData)
+            .chain(to: UpdateUserData)
             .collapse(into: ReportUserEnrichmentSuccess)
   end
 end

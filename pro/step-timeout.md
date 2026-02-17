@@ -33,7 +33,7 @@ Add a `timeout` option to any step in your pipeline definition. Values can be in
 ```ruby
 define do |pipeline|
   pipeline.start(FetchData, timeout: 1.minute)
-          .chain(ProcessData, timeout: 60)
+          .chain(to: ProcessData, timeout: 60)
 end
 ```
 

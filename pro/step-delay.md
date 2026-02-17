@@ -36,7 +36,7 @@ Add a `delay` option to any step in your pipeline definition. Values can be inte
 ```ruby
 define do |pipeline|
   pipeline.start(SendWelcomeEmail, delay: 1.hour)
-          .chain(CheckProfileComplete, delay: 3_600)
+          .chain(to: CheckProfileComplete, delay: 3_600)
 end
 ```
 
@@ -49,7 +49,7 @@ end
 **Delays + Timeouts:** A step can have both a delay and a timeout. The timeout window begins when the step starts executing, not when it becomes eligible:
 
 ```ruby
-pipeline.chain(CallExternalApi, delay: 5.minutes, timeout: 30.seconds)
+pipeline.chain(to: CallExternalApi, delay: 5.minutes, timeout: 30.seconds)
 ```
 
 **Delays + Conditional logic:** Delays work naturally with conditional branching—schedule different follow-up timing based on prior step outcomes.
