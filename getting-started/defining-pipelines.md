@@ -210,6 +210,80 @@ end
 
 **Note:** Calling `collapse` on a pipeline that hasn't been expanded raises a `Ductwork::DSL::DefinitionBuilder::CollapseError`.
 
+### `divert` - Conditional Branching
+
+The `divert` transition routes pipeline execution to different steps based on the return value of the previous step like a case/switch statement. Unlike `divide`, which sends the same input to all branches in parallel, `divert` selects only one branch to execute. The return value from the previous step is converted to a string and matched against the hash keys.
+
+An `otherwise` key is **always required** as a fallback when no keys match.
+
+**Syntax:** `divert(to: { key1: StepClass1, key2: StepClass2, ..., otherwise: FallbackStepClass })`
+
+```ruby
+class EnrichAllUsersDataPipeline < Ductwork::Pipeline
+  define do |pipeline|
+    pipeline.start(QueryUsersRequiringEnrichment)
+            .expand(to: LoadUserData)
+            .divert(to: {
+              premium: EnrichFromPremiumSource,
+              standard: EnrichFromStandardSource,
+              otherwise: EnrichFromDefaultSource
+            })
+  end
+end
+```
+
+**Block syntax:** Like `divide`, the `divert` transition accepts an optional block, yielding a branch for each step. This allows you to chain different transitions onto each branch independently:
+
+```ruby
+class EnrichAllUsersDataPipeline < Ductwork::Pipeline
+  define do |pipeline|
+    pipeline.start(StepA)
+            .divert(to: { bar: StepB, otherwise: StepC }) do |branch1, branch2|
+              branch1.chain(to: StepD)
+              branch2.chain(to: StepE).chain(to: StepF)
+            end
+  end
+end
+```
+
+**Note:** Omitting the `otherwise` key raises a `Ductwork::DSL::DefinitionBuilder::DivertError`. If at runtime the return value doesn't match any key and no `otherwise` branch exists, the pipeline will halt.
+
+### `converge` - Merge Diverted Branches
+
+The `converge` transition is the inverse of `divert`. It merges diverted branches back into a single step. The converged step receives the return value from whichever branch was selected at runtime.
+
+**Syntax:** `converge(into: StepClass)`
+
+```ruby
+class EnrichAllUsersDataPipeline < Ductwork::Pipeline
+  define do |pipeline|
+    pipeline.start(QueryUsersRequiringEnrichment)
+            .expand(to: LoadUserData)
+            .divert(to: {
+              premium: EnrichFromPremiumSource,
+              standard: EnrichFromStandardSource,
+              otherwise: EnrichFromDefaultSource
+            })
+            .converge(into: UpdateUserData)
+  end
+end
+```
+
+**Block syntax:** For improved readability, you can call `converge` on any branch and pass the other branches as arguments:
+
+```ruby
+class EnrichAllUsersDataPipeline < Ductwork::Pipeline
+  define do |pipeline|
+    pipeline.start(StepA)
+            .divert(to: { bar: StepB, otherwise: StepC }) do |branch1, branch2|
+              branch1.converge(branch2, into: StepD)
+            end
+  end
+end
+```
+
+**Note:** Calling `converge` on a pipeline that hasn't been diverted raises a `Ductwork::DSL::DefinitionBuilder::ConvergeError`.
+
 ---
 
 Next, we're ready to run the `ductwork` processes.

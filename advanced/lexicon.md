@@ -20,7 +20,7 @@ Each pipeline defines:
 
 ## Branch
 
-A **branch** is a path in a pipeline. Pipelines can have many branches. Branches are created when the `divide` or `expand` transitions are called, and branches are reduced when the `combine` or `collapse` transitions are called.
+A **branch** is a path in a pipeline. Pipelines can have many branches. Branches are created when the `divide`, `expand`, or `divert` transitions are called, and branches are reduced when the complementary `combine`, `collapse`, or `converge` transitions are called.
 
 ## Step
 

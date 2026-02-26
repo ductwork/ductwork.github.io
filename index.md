@@ -31,6 +31,9 @@ class EnrichAllUsersDataPipeline < Ductwork::Pipeline
                          FetchDataFromSourceB])
             .combine(into: CollateUserData)                 # Bring branches back together
             .chain(to: UpdateUserData)                      # Sequential processing
+            .divert(to: { success: NotifyUser,              # Conditional branching
+                          otherwise: FlagForReview })
+            .converge(into: FinalizeUserRecord)             # Merge conditional branches
             .collapse(into: ReportUserEnrichmentSuccess)    # Final aggregation
   end
 end
