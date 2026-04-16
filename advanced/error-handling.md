@@ -21,7 +21,7 @@ end
 
 Your halt handler class must implement the following interface:
 
-* `initialize(error)` - The initializer receives a single argument: the error instance from the final failed step.
+* `initialize(halt_reasons)` - The initializer receives a single argument: an array of halt reasons for each branch that halted
 
 * `execute` - An instance method that performs the halt handling logic (similar to pipeline steps).
 
