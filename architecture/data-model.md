@@ -11,6 +11,9 @@ nav_order: 10
       Pipeline {
       }
 
+      Run {
+      }
+
       Branch {
       }
 
@@ -32,7 +35,7 @@ nav_order: 10
       Execution {
       }
 
-      Run {
+      Attempt {
       }
 
       Availability {
@@ -47,9 +50,10 @@ nav_order: 10
       Tuple {
       }
 
-      Pipeline ||--o{ Branch : "has many"
-      Pipeline ||--o{ Step : "has many"
-      Pipeline ||--o{ Tuple : "has many"
+      Pipeline ||--o{ Run : "has many"
+      Run ||--o{ Branch : "has many"
+      Run ||--o{ Step : "has many"
+      Run ||--o{ Tuple : "has many"
       Branch ||--o{ Step : "has many"
       Branch ||--o{ Transition : "has many"
       Branch ||--o{ BranchLink : "parent of"
@@ -60,7 +64,7 @@ nav_order: 10
       Transition ||--o{ Advancement : "has many"
       Job ||--o{ Execution : "has many"
       Execution ||--o| Availability : "has one"
-      Execution ||--o| Run : "has one"
+      Execution ||--o| Attempt : "has one"
       Execution ||--o| Result : "has one"
       Process ||--o{ Advancement : "has many"
       Process ||--o{ Availability : "has many"
